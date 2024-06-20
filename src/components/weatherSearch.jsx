@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import CustomTextInput from './customTextInput'
 
-const WeatherSearch = ({ searchWeather }) => {
+const WeatherSearch = ({ searchWeather, updateInputValue }) => {
   const [location, setLocation] = useState('')
+
+  const handleChange = (value) => {
+    setLocation(value)
+    updateInputValue(value)
+  }
 
   return (
     <View>
@@ -11,7 +16,7 @@ const WeatherSearch = ({ searchWeather }) => {
         placeholder="Search the weather of your city"
         numberOfLines={1}
         text={location}
-        onChange={setLocation}
+        onChange={handleChange}
       />
       <View style={styles.buttonWrapper}>
         <Button
